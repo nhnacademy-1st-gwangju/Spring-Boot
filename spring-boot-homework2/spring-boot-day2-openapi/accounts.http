@@ -1,0 +1,29 @@
+### 등록
+
+POST /accounts
+Content-Type: application/json;charset=utf-8
+Host: localhost:9090
+
+{
+  "id": 1,
+  "number": "account1",
+  "balance": 100000000
+}
+
+### 단건 조회
+
+GET /accounts/1
+Content-Type: application/json;charset=utf-8
+Host: localhost:9090
+
+### 전체 조회
+
+GET /accounts
+Content-Type: application/json;charset=utf-8
+Host: localhost:9090
+
+### 삭제
+
+DELETE /accounts/1
+Content-Type: application/json;charset=utf-8
+Host: localhost:9090
