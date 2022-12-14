@@ -1,0 +1,9 @@
+ ____  ____
+|  _ \|  _ \  ___  _ __   __ _
+| | | | | | |/ _ \| '_ \ / _` |
+| |_| | |_| | (_) | | | | (_| |
+|____/|____/ \___/|_| |_|\__, |
+                         |___/
+
+* application name : ${application.title}
+* application version : ${application.version}
