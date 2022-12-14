@@ -3,6 +3,7 @@ package com.nhnacademy.openapi.controller;
 import com.nhnacademy.openapi.domain.Account;
 import com.nhnacademy.openapi.dto.AccountRegisterRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -19,11 +20,20 @@ public class AccountOpenApiController {
 
     private final RestTemplate restTemplate;
 
+    @Value("${host}")
+    private String host;
+
+    @Value("${port}")
+    private int port;
+
+    @Value("${scheme}")
+    private String scheme;
+
     // GET /accounts : 전체 조회
     @GetMapping
     public ApiResponse<List<Account>> findAllAccounts() {
         URI uri = UriComponentsBuilder.fromPath("/accounts")
-                .scheme("http").host("127.0.0.1").port(9090)
+                .scheme(scheme).host(host).port(port)
                 .build(false).encode()
                 .toUri();
 
@@ -35,7 +45,7 @@ public class AccountOpenApiController {
     @GetMapping("/{id}")
     public ApiResponse<Account> findById(@PathVariable Long id) {
         URI uri = UriComponentsBuilder.fromPath("/accounts/{id}")
-                .scheme("http").host("127.0.0.1").port(9090)
+                .scheme(scheme).host(host).port(port)
                 .build(false).expand(id).encode()
                 .toUri();
 
@@ -48,7 +58,7 @@ public class AccountOpenApiController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Account> registerAccount(@RequestBody AccountRegisterRequest request) {
         URI uri = UriComponentsBuilder.fromPath("/accounts")
-                .scheme("http").host("127.0.0.1").port(9090)
+                .scheme(scheme).host(host).port(port)
                 .build(false).encode()
                 .toUri();
 
@@ -63,7 +73,7 @@ public class AccountOpenApiController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
         URI uri = UriComponentsBuilder.fromPath("/accounts/{id}")
-                .scheme("http").host("127.0.0.1").port(9090)
+                .scheme(scheme).host(host).port(port)
                 .build(false).expand(id).encode()
                 .toUri();
 
